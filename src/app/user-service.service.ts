@@ -12,7 +12,7 @@ export class UserServiceService {
       id: 1,
       email: "a@test.com",
       phone: 4353453543,
-      Status: "”active"
+      Status: "active"
     },
     {
       name: "omar",
@@ -78,12 +78,12 @@ export class UserServiceService {
       Status: "soft_deleted"
     }
   ];
-
+  sortedFlag = false;
+  sortedVal = null;
   getAllUsersNum() {
     return this.data.length;
   }
   sortUsers(SortType) {
-    console.log("insideHere");
     this.data.sort(function(a, b) {
       if (a[SortType] < b[SortType]) {
         return -1;
@@ -93,6 +93,8 @@ export class UserServiceService {
       }
       return 0;
     });
+    this.sortedFlag = true;
+    this.sortedVal = SortType;
     return new Observable(observer => observer.next(this.data));
   }
   getUserByPage(pageNum) {
@@ -109,5 +111,27 @@ export class UserServiceService {
           return true;
         }
       });
+  }
+  DeleteUser(id) {
+    this.data=this.data.filter(i=>{
+      return i.id != id;
+    })
+    return new Observable(observer => observer.next(this.data)); 
+  }
+  addUser(newUser) {
+    var didExsist: Boolean = this.data.every(i => {
+      return i.id == newUser.id;
+    });
+    if (didExsist) {
+      return new Observable(observer =>
+        observer.next({ err: "This User already exist" })
+      );
+    } else {
+      this.data.push(newUser);
+      if (this.sortedFlag) {
+        this.sortUsers(this.sortedVal);
+      }
+      return new Observable(observer => observer.next(this.data));
+    }
   }
 }
