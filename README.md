@@ -2,6 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
+## How to Login
+
+after following the below steps you can login using the following credentials
+
+```
+--Admin--
+email   : admin1@admin.com 
+password: 1234
+
+--Basic user--
+email   : user1@user.com 
+password: 1234
+
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
