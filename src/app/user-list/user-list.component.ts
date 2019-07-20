@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UserServiceService } from "../user-service.service";
 import { ActivatedRoute } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
+// import { ToastrService } from "ngx-toastr";
+import {TranslateService} from '@ngx-translate/core';
 import { LoginServiceService } from "../login-service.service";
 @Component({
   selector: "app-user-list",
@@ -13,8 +14,12 @@ export class UserListComponent implements OnInit {
     private userService: UserServiceService,
     private Router: ActivatedRoute,
     private _LoginServic: LoginServiceService,
-    private _TostarService: ToastrService
-  ) {}
+    // private _TostarService: ToastrService,
+    private translate: TranslateService
+  ) {
+    translate.setDefaultLang('en');
+
+  }
 
   data = [];
   pageNum;

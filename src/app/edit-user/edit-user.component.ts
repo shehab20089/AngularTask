@@ -8,6 +8,7 @@ import { UserServiceService } from "../user-service.service";
   styleUrls: ["./edit-user.component.css"]
 })
 export class EditUserComponent implements OnInit {
+  //i used login service to implelent the curd operations of the user
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -21,6 +22,7 @@ export class EditUserComponent implements OnInit {
       console.log(data.unum);
       this.uid = data.unum;
       this.oldval = this._UserServiceService.getUserById(data.unum);
+      //i used this to populate the form with the user data before performing any update
       var editfrm = document.getElementById("frm3");
       (<HTMLInputElement>(
         editfrm.querySelector("#nameInput")
@@ -35,10 +37,11 @@ export class EditUserComponent implements OnInit {
       )).value = this.oldval["Status"];
     });
   }
+  // this is used to handle the edit based to the values of the sent form
   HandleEditing(e) {
-    console.log(e);
+    //pervent default is used to prevent form from refreshing the page
     e.preventDefault();
-    console.log(this.uid)
+    //obj is used to get the data from the form and then send it to the service to handle the edit
     let obj = {
       name: e.target.querySelector("#nameInput").value,
       email: e.target.querySelector("#exampleInputEmail1").value,
@@ -46,9 +49,8 @@ export class EditUserComponent implements OnInit {
       id: this.uid,
       Status: e.target.querySelector("#StatusSelect").value
     };
-    console.log(obj);
     this._UserServiceService.editUser(obj);
     this.oldval = this._UserServiceService.getUserById(this.uid);
-    this._router.navigateByUrl('UserList/1')
+    this._router.navigateByUrl("UserList/1");
   }
 }

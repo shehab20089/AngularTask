@@ -1,0 +1,34 @@
+{
+    "TableHeaders": {
+        "name":"Name",
+        "email": "Email",
+        "phone": "Phone",
+        "status":"Status",
+        "id":"Id",
+        "password":"Password"
+    }
+,
+    "operations":{
+        "delete":"Delete"
+        ,"edit":"Edit"
+    },
+    "filters":{
+        "sort":"Sort",
+        "name":"Name",
+        "mail":"Mail"
+    },
+    "addbtn":"Add User",
+    "loginpage":"Login",
+    "frmbtns":{
+        "submit":"Submit"
+        ,
+        "close":"Close"
+    },
+    "navbar":{
+        "welcome":"Welcome",
+        "logout":"Logout",
+        "DropDown":"Lang"
+
+    }
+    
+}

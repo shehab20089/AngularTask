@@ -1,0 +1,34 @@
+{
+    "TableHeaders": {
+        "name":"الاسم",
+        "email": "البريد الالكتروني",
+        "phone": "التيليفون",
+        "status":"الحاله",
+        "id":"Id",
+        "password":"الرقم السري"
+    }
+,
+    "operations":{
+        "delete":"حذف"
+        ,"edit":"تعديل"
+    },
+    "filters":{
+        "sort":"ترتيب بي",
+        "name":"الاسم",
+        "mail":"البريد"
+    },
+    "addbtn":"اضافه مشترك",
+    "loginpage":"التسجيل",
+    "frmbtns":{
+        "submit":"ادخال"
+        ,
+        "close":"علق"
+    },
+    "navbar":{
+        "welcome":"مرحبا",
+        "logout":"تسجيل الخروج",
+        "DropDown":"اللغه"
+
+    }
+    
+}

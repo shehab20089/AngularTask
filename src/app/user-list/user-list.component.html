@@ -1,4 +1,5 @@
 <div class="container ">
+  <!-- this row will carry the the add user button the button logic -->
   <div class="row ">
     <!-- Button trigger modal -->
     <div class="col-3 offset-2 ">
@@ -8,7 +9,7 @@
         data-toggle="modal"
         data-target="#AddModal"
       >
-        Add User
+      {{'addbtn'|translate}}
       </button>
     </div>
     <div
@@ -22,7 +23,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="AddModalLabel">Add user</h5>
+            <h5 class="modal-title" id="AddModalLabel">{{'addbtn'|translate}}</h5>
             <button
               type="button"
               class="close"
@@ -36,7 +37,7 @@
             <form id="frm1" (submit)="HandleAdding($event)">
               <div class="">
                 <div class="form-group">
-                  <label for="nameInput">Name</label>
+                  <label for="nameInput">{{ 'TableHeaders.name' | translate }}</label>
                   <input
                     type="text"
                     class="form-control"
@@ -45,7 +46,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
+                  <label for="exampleInputEmail1">{{ 'TableHeaders.email' | translate }}</label>
                   <input
                     type="email"
                     class="form-control"
@@ -55,7 +56,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="phoneInput">Phone</label>
+                  <label for="phoneInput">{{ 'TableHeaders.phone' | translate }}</label>
                   <input
                     type="tel"
                     class="form-control"
@@ -67,7 +68,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Id</label>
+                  <label for="exampleInputPassword1">{{ 'TableHeaders.id' | translate }}</label>
                   <input
                     type="text"
                     pattern="[0-9]+"
@@ -78,7 +79,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlSelect1">Status</label>
+                  <label for="exampleFormControlSelect1">{{ 'TableHeaders.status' | translate }}</label>
                   <select class="form-control" id="StatusSelect">
                     <option>active</option>
                     <option> soft_deleted </option>
@@ -95,23 +96,25 @@
               class="btn btn-secondary"
               data-dismiss="modal"
             >
-              Close
+            {{'frmbtns.close'|translate}}
             </button>
             <button
               type="button"
               (click)="HandleAddForm()"
               class="btn btn-primary"
             >
-              Save changes
+            {{'frmbtns.submit'|translate}}
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- and this row carry the list and the sorting section -->
   <div class="row">
     <div class="col-3">
-      <h6>Sort</h6>
+        
+        <h6>{{ 'filters.sort' | translate }}</h6>
       <div class="form-check mt-3">
         <input
           class="form-check-input"
@@ -122,7 +125,7 @@
           value="option1"
         />
         <label class="form-check-label" for="exampleRadios1">
-          Name
+            {{ 'filters.name' | translate }}
         </label>
       </div>
       <div class="form-check mt-3">
@@ -135,7 +138,7 @@
           value="option2"
         />
         <label class="form-check-label" for="exampleRadios1">
-          Email
+            {{ 'filters.mail' | translate }}
         </label>
       </div>
     </div>
@@ -143,10 +146,10 @@
       <table class="table">
         <thead class="thead-light">
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Phone</th>
-            <th scope="col">mail</th>
-            <th scope="col">status</th>
+            <th scope="col">{{ 'TableHeaders.name' | translate }}</th>
+            <th scope="col">{{ 'TableHeaders.phone' | translate }}</th>
+            <th scope="col">{{ 'TableHeaders.email' | translate }}</th>
+            <th scope="col">{{ 'TableHeaders.status' | translate }}</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -162,10 +165,11 @@
                 (click)="HandleDelete(item.id)"
                 
               >
-                Delete
+              {{ 'operations.delete' | translate }}
               </button>
               <a class="btn btn-primary" routerLink="/edit/{{ item.id }}">
-                Edit
+              {{ 'operations.edit' | translate }}
+              
               </a>
             </td>
             <td></td>
@@ -177,14 +181,14 @@
         min-height: 100%;">
           <ul class="pagination">
             <li class="page-item">
-              <a class="page-link" href="#">Previous</a>
+              <a class="page-link" href="#">  < </a>
             </li>
             <li class="page-item" *ngFor="let item of PaginationNumbers">
               <a class="page-link" routerLink="/UserList/{{ item }}">{{
                 item
               }}</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item"><a class="page-link" href="#">></a></li>
           </ul>
         </div>
       </div>
