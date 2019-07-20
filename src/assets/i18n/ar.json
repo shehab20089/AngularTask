@@ -2,7 +2,7 @@
     "TableHeaders": {
         "name":"الاسم",
         "email": "البريد الالكتروني",
-        "phone": "التيليفون",
+        "phone": "التليفون",
         "status":"الحاله",
         "id":"Id",
         "password":"الرقم السري"
