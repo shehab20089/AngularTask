@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root"
 })
 export class UserServiceService {
-  constructor() {}
+  constructor(private tostarService:ToastrService) {}
 
   data = [
     {
@@ -95,7 +96,6 @@ export class UserServiceService {
     });
     this.sortedFlag = true;
     this.sortedVal = SortType;
-    return new Observable(observer => observer.next(this.data));
   }
   getUserByPage(pageNum) {
     let skipval = (pageNum - 1) * 9;
@@ -113,10 +113,13 @@ export class UserServiceService {
       });
   }
   DeleteUser(id) {
+
     this.data = this.data.filter(i => {
       return i.id != id;
     });
-    return new Observable(observer => observer.next(this.data));
+    this.tostarService.success('Thank you ','user Deleted successfully');
+
+    
   }
   getUserById(uid) {
      var exist=this.data.filter(i=>{
@@ -125,31 +128,39 @@ export class UserServiceService {
     if(exist.length>0)
     return exist[0];
     else 
+    this.tostarService.error('',`user with this id ${uid} doesnt exist`);
+
     return;
   }
 editUser(uobj)
 {
+
   this.data=this.data.filter(i=>{
     return i.id != uobj['id'];
   })
+  
   console.log(this.data)
 this.data.push(uobj);
 if (this.sortedFlag) {
   this.sortUsers(this.sortedVal);
 }
+this.tostarService.success('Thank you ','user was updateted successfully');
+
 
 
 }
   addUser(newUser) {
-    var didExsist: Boolean = this.data.every(i => {
-      return i.id == newUser.id;
+        var didExsist: Boolean = this.data.every(i => {
+      return i.id != newUser.id;
     });
-    if (didExsist) {
-      return new Observable(observer =>
-        observer.next({ err: "This User already exist" })
-      );
+    console.log(didExsist)
+    if (!didExsist) {
+      this.tostarService.error('Sorry ','user with this id already exists');
+return;
     } else {
       this.data.push(newUser);
+      this.tostarService.success('Thank you ','user added successfully');
+
       if (this.sortedFlag) {
         this.sortUsers(this.sortedVal);
       }

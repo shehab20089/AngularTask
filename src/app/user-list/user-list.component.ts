@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserServiceService } from "../user-service.service";
 import { ActivatedRoute } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 import { LoginServiceService } from "../login-service.service";
 @Component({
   selector: "app-user-list",
@@ -11,7 +12,8 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserServiceService,
     private Router: ActivatedRoute,
-    private _LoginServic:LoginServiceService
+    private _LoginServic: LoginServiceService,
+    private _TostarService: ToastrService
   ) {}
 
   data = [];
@@ -46,17 +48,16 @@ export class UserListComponent implements OnInit {
       Status: e.target.querySelector("#StatusSelect").value
     };
     const result = this.userService.addUser(obj);
-    if (result.hasOwnProperty("err")) {
-      console.log("err");
-    } else {
-      result.subscribe(data => {
-        this.data = this.userService.getUserByPage(this.pageNum);
-      });
-    }
+
+    result.subscribe(data => {
+      this.data = this.userService.getUserByPage(this.pageNum);
+    });
+
     console.log(obj);
   }
   HandleDelete(uid) {
     this.userService.DeleteUser(uid);
+
     this.data = this.userService.getUserByPage(this.pageNum);
     const pagsnum = Math.ceil(this.userService.getAllUsersNum() / 9);
     this.PaginationNumbers = Array(pagsnum)
@@ -65,9 +66,8 @@ export class UserListComponent implements OnInit {
   }
   HandleSort(str) {
     console.log(str);
-    this.userService.sortUsers(str).subscribe((data: any) => {
-      this.data = this.userService.getUserByPage(this.pageNum);
-      console.log(data);
-    });
+    this.userService.sortUsers(str);
+    this.data = this.userService.getUserByPage(this.pageNum);
+
   }
 }
