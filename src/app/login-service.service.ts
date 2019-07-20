@@ -54,7 +54,7 @@ Logout(){
 {
   if(!this.isLoggedIn()){
   var  user=this.SysUseers.filter(i=>{
-    return i.email == enterdUser['email'] && i.password== enterdUser['password']
+    return i.email == enterdUser['email']   && i.password== enterdUser['password']
   })
  if(user.length>0 )
  {

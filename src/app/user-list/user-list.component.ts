@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UserServiceService } from "../user-service.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 // import { ToastrService } from "ngx-toastr";
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from "@ngx-translate/core";
 import { LoginServiceService } from "../login-service.service";
 @Component({
   selector: "app-user-list",
@@ -14,11 +14,10 @@ export class UserListComponent implements OnInit {
     private userService: UserServiceService,
     private Router: ActivatedRoute,
     private _LoginServic: LoginServiceService,
-    // private _TostarService: ToastrService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private _router: Router
   ) {
-    translate.setDefaultLang('en');
-
+    translate.setDefaultLang("en");
   }
 
   data = [];
@@ -73,6 +72,20 @@ export class UserListComponent implements OnInit {
     console.log(str);
     this.userService.sortUsers(str);
     this.data = this.userService.getUserByPage(this.pageNum);
+  }
+  movePge(str) {
+    if (str == ">") {
+      if (this.pageNum != this.PaginationNumbers.length)
+        this.pageNum = Number.parseInt(this.pageNum) + 1;
+      else this.pageNum = 1;
 
+      this._router.navigateByUrl(`UserList/${this.pageNum}`);
+    } else {
+      if (this.pageNum != 1)
+        this.pageNum = Number.parseInt(this.pageNum) - 1;
+      else this.pageNum = this.PaginationNumbers.length;
+
+      this._router.navigateByUrl(`UserList/${this.pageNum}`);
+    }
   }
 }
