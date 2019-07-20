@@ -1,0 +1,49 @@
+<div class="card ml-auto mr-auto mt-5 w-25" style="width: 18rem;">
+    
+    <div class="card-body">
+        <h5 class="card-title">Edit</h5>
+<form id="frm3" (submit)="HandleEditing($event)">
+    <div class="">
+      <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameInput"
+          placeholder="Enter the user name....."
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter the user mail....."
+        />
+      </div>
+      <div class="form-group">
+        <label for="phoneInput">Phone</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="phoneInput"
+          pattern="[0-9]+"
+          title="must enter number only"
+          required
+          placeholder="Enter the user phone number"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Status</label>
+        <select class="form-control" id="StatusSelect">
+          <option>active</option>
+          <option> soft_deleted </option>
+        </select>
+      </div>
+    </div>
+    <input type="submit"   class="btn btn-primary" />
+  </form>
+</div>
+</div>

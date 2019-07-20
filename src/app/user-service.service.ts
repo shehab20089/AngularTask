@@ -113,11 +113,33 @@ export class UserServiceService {
       });
   }
   DeleteUser(id) {
-    this.data=this.data.filter(i=>{
+    this.data = this.data.filter(i => {
       return i.id != id;
-    })
-    return new Observable(observer => observer.next(this.data)); 
+    });
+    return new Observable(observer => observer.next(this.data));
   }
+  getUserById(uid) {
+     var exist=this.data.filter(i=>{
+      return i.id==uid;
+    })
+    if(exist.length>0)
+    return exist[0];
+    else 
+    return;
+  }
+editUser(uobj)
+{
+  this.data=this.data.filter(i=>{
+    return i.id != uobj['id'];
+  })
+  console.log(this.data)
+this.data.push(uobj);
+if (this.sortedFlag) {
+  this.sortUsers(this.sortedVal);
+}
+
+
+}
   addUser(newUser) {
     var didExsist: Boolean = this.data.every(i => {
       return i.id == newUser.id;

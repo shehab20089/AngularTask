@@ -30,7 +30,7 @@ isLoggedIn(){
 isAdmin()
 {
   if(this.isLoggedIn()){
-    return localStorage.getItem('token')['userType']=="admin";
+    return JSON.parse(localStorage.getItem('token'))['userType']=="admin";
   }
 }
 
